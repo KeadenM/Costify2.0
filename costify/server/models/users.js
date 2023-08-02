@@ -1,5 +1,7 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
+const expenseSchema = require('./expenses');
+const incomeSchema = require('./income');
 
 const userSchema = new Schema({
     username: {
@@ -19,14 +21,8 @@ const userSchema = new Schema({
         required: true,
         minlength: 5,
     },
-    income: {
-        type: Number,
-        default: 0,
-    },
-    expenses: {
-        type: Number,
-        default: 0,
-    },
+    income: [incomeSchema],
+    expenses: [expenseSchema],
     savingsgoal: {
         type: Number,
         default: 0,
