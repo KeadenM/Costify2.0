@@ -11,6 +11,4 @@ const expenseSchema = new Schema({
     }
 });
 
-const Expense = model('Expense', expenseSchema);
-
-module.exports = Expense;
+module.exports = expenseSchema;
