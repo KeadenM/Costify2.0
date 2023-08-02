@@ -2,6 +2,7 @@ const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
   type User {
+    _id: ID
     username: String
     email: String
     password: String
@@ -10,10 +11,12 @@ const typeDefs = gql`
     savingsgoal: Float
     }
     type Income {
+        _id: ID
         income: String
         amount: Float
     }
     type Expense {
+        _id: ID
         expense: String
         amount: Float
     }
