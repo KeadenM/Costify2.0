@@ -4,35 +4,34 @@ const { signToken } = require('../utils/auth');
 
 const resolvers = {
     Query: {
-        users: async () => {
-            return users.find().populate('expenses').populate('income');
-        },
-        user: async (parent, { username }) => {
-            return users.findOne({ username }).populate('expenses').populate('income');
+        // // users: async () => {
+        // //     return users.find().populate('expenses').populate('income');
+        // // },
+        // user: async (parent, { username }) => {
+        //     return users.findOne({ username }).populate('expenses').populate('income');
+        // },
+        // expenses: async (parent, { username }) => {
+        //     const params = username ? { username } : {};
+        //     return expenses.find(params).sort({ createdAt: -1 });
 
-        },
-        expenses: async (parent, { username }) => {
-            const params = username ? { username } : {};
-            return expenses.find(params).sort({ createdAt: -1 });
-
-        },
-        expense: async (parent, { _id }) => {
-            return expenses.findOne({ _id });
-
-
-        },
-        income: async (parent, { username }) => {
-            const params = username ? { username } : {};
-            return income.find(params).sort({ createdAt: -1 });
+        // },
+        // expense: async (parent, { _id }) => {
+        //     return expenses.findOne({ _id });
 
 
-        },
-        income: async (parent, { _id }) => {
+        // },
+        // income: async (parent, { username }) => {
+        //     const params = username ? { username } : {};
+        //     return income.find(params).sort({ createdAt: -1 });
 
-            return income.findOne({ _id });
+
+        // },
+        // income: async (parent, { _id }) => {
+
+        //     return income.findOne({ _id });
 
 
-        },
+        // },
         me: async (parent, args, context) => {
             if (context.user) {
                 return users.findOne({ _id: context.user._id }).populate('expenses').populate('income');
