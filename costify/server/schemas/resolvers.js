@@ -96,6 +96,76 @@ const resolvers = {
             }
 
             throw new AuthenticationError('You need to be logged in!');
+        },
+        addSavingsGoal: async (parent, { savingsgoal }, context) => {
+            if (context.user) {
+                const savingsgoal = await savingsgoal.create({
+                    savingsgoal,
+                    username: context.user.username,
+                });
+
+                await users.findOneAndUpdate(
+                    { _id: context.user._id },
+                    { $addToSet: { savingsgoal: savingsgoal._id } }
+                );
+
+                return savingsgoal;
+            }
+
+            throw new AuthenticationError('You need to be logged in!');
+        },
+        removeExpense: async (parent, { expense, amount }, context) => {
+            if (context.user) {
+                const expense = await expenses.findOneAndDelete({
+                    expense,
+                    amount,
+                    username: context.user.username,
+                });
+
+                await users.findOneAndUpdate(
+                    { _id: context.user._id },
+                    { $pull: { expenses: expense._id } }
+                );
+
+                return expense;
+            }
+
+            throw new AuthenticationError('You need to be logged in!');
+        },
+        removeIncome: async (parent, { income, amount }, context) => {
+            if (context.user) {
+                const income = await income.findOneAndDelete({
+                    income,
+                    amount,
+                    username: context.user.username,
+                });
+
+                await users.findOneAndUpdate(
+                    { _id: context.user._id },
+                    { $pull: { income: income._id } }
+                );
+
+                return income;
+            }
+
+            throw new AuthenticationError('You need to be logged in!');
+        },
+        removeSavingsGoal: async (parent, { savingsgoal }, context) => {
+            if (context.user) {
+                const savingsgoal = await savingsgoal.findOneAndDelete({
+                    savingsgoal,
+                    username: context.user.username,
+                });
+
+                await users.findOneAndUpdate(
+                    { _id: context.user._id },
+                    { $pull: { savingsgoal: savingsgoal._id } }
+                );
+
+                return savingsgoal;
+            }
+
+            throw new AuthenticationError('You need to be logged in!');
         }
     }
 };
