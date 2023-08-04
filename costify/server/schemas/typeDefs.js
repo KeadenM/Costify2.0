@@ -35,6 +35,7 @@ const typeDefs = gql`
         addSavingsGoal(savingsgoal: Float!): User
         removeExpense(expense: String!, amount: Float!): User
         removeIncome(income: String!, amount: Float!): User
+        removeSavingsGoal(savingsgoal: Float!): User
     }
 `;
 
