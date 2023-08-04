@@ -1,7 +1,7 @@
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
 
-function FormFloatingBasicExample() {
+function Signup() {
   return (
     <>
       <FloatingLabel
@@ -18,4 +18,4 @@ function FormFloatingBasicExample() {
   );
 }
 
-export default FormFloatingBasicExample;
+export default Signup;

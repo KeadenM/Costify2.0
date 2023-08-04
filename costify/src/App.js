@@ -1,16 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css';
-import ContainerExample from './components/Main';
-import Navigation from './components/Navigation';
+import PageContainer from './components/PageContainer';
 
-function App() {
-  return (
-    <div className="App">
-      <Navigation />
-      <ContainerExample>
-      </ContainerExample>
-    </div>
-  );
-}
+const App = () => <PageContainer />; 
 
 export default App;

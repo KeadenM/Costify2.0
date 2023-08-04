@@ -3,7 +3,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
-function Navigation() {
+function Navigation({ handlePageChange }) {
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container fluid>
@@ -11,9 +11,24 @@ function Navigation() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#home">Dashboard</Nav.Link>
-            <Nav.Link href="#link">Login/Signup</Nav.Link>
-            <Nav.Link href="#link">Add expense</Nav.Link>
+            <Nav.Link 
+              href="#main"
+              onClick={() => handlePageChange('Main')}
+            >
+              Dashboard
+            </Nav.Link>
+            <Nav.Link
+              href="#signup"
+              onClick={() => handlePageChange('Signup')}
+            >
+              Login/Signup
+            </Nav.Link>
+            <Nav.Link
+              href="#link"
+              conClick={console.log("expense page needed")}
+            >
+              Add expense
+            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
