@@ -6,7 +6,7 @@ export const LOGIN_USER = gql`
       token
       user {
         _id
-        username
+        email
       }
     }
   }
@@ -25,7 +25,7 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_EXPENSE = gql`
-  mutation addExpense($expense: String!, $amount: Float!) {
+  mutation addExpense($expense: String!, $amount: Float!, $username: String!) {
     addExpense(expense: $expense, amount: $amount) {
         _id
         expense
@@ -35,7 +35,7 @@ export const ADD_EXPENSE = gql`
 `;
 
 export const ADD_INCOME = gql`
-  mutation addIncome($income: String!, $amount: Float!) {
+  mutation addIncome($income: String!, $amount: Float!, $username: String!) {
     addIncome(income: $income, amount: $amount) {
         _id
         income
