@@ -1,36 +1,38 @@
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import ExpenseList from './Expenses';
 
 const styles = {
-  height: 2000
+  height: '2000px',
+  border: '2px solid rgba(0, 0, 0, 0.55)'
 }
 
 function ContainerExample() {
   return (
-    <Container style={styles}>
+    <Container fluid style={{height: '100vh'}}>
       <Row>
-        <Col xs={3}>
-            <h1>Danny's secret box</h1>
+        <Col xs={3} style={{height: '100vh'}}>
+            <h1>Expense list</h1>
+            <ExpenseList></ExpenseList>
         </Col>
 
         <Col xs={9}>
-            <Container>
-                <h1> Keaden's secret cardboard box</h1>
-                <Row>
+              <Container fluid>  
+                <Row style={{height: '50vh'}}>
                     <Col xs={6}>
                         <h1> Monthly</h1>
                     </Col>
                     <Col xs={6}>
-                        <h1> scoopity scoopy bop</h1>
+                        <h1> Yearly</h1>
                     </Col>
                 </Row>
-                <Row>
+                <Row style={{height: '50vh'}}>
                     <Col xs={12}>
-                        <h1>Boot scootin boogey</h1>
+                        <h1>Savings goals</h1>
                     </Col>
                 </Row>
-            </Container>
+              </Container>  
         </Col>
       </Row>
     </Container>
