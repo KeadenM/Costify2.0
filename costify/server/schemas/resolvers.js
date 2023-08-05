@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { users, expenses, income } = require('../models');
+const { users, income, Expense, expenseSchema } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -32,12 +32,8 @@ const resolvers = {
 
 
         // },
-        me: async (parent, args, username) => {
-            if (username) {
-                const user = await users.findOne({ username });
-                return user
-            }
-            // throw new AuthenticationError('You need to be logged in!');
+        me: async (parent, { username }) => {
+            return users.findOne({ username });
         },
     },
     Mutation: {
@@ -64,18 +60,20 @@ const resolvers = {
         },
         addExpense: async (parent, { name, amount, username }, context) => {
             if (true) {
-                const expense = await expenses.create({
+                const expense = await Expense.create({
                     name,
                     amount,
                     username
                 });
 
-                await users.findOneAndUpdate(
+                const newExpense = await Expense.findOne({ name });
+
+                const user = await users.findOneAndUpdate(
                     { username: username },
-                    { $addToSet: { expenses: expense._id } }
+                    { $addToSet: { expenses: newExpense } }
                 );
 
-                return expense;
+                return user;
             }
 
             throw new AuthenticationError('You need to be logged in!');
@@ -117,7 +115,7 @@ const resolvers = {
         },
         removeExpense: async (parent, { expense, amount }, context) => {
             if (context.user) {
-                const expense = await expenses.findOneAndDelete({
+                const expense = await Expense.findOneAndDelete({
                     expense,
                     amount,
                     username: context.user.username,
