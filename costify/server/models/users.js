@@ -2,6 +2,7 @@ const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 const expenseSchema = require('./expenses');
 const incomeSchema = require('./income');
+const Expense = require('./expenses');
 
 const userSchema = new Schema({
     username: {
@@ -12,7 +13,7 @@ const userSchema = new Schema({
     },
     email: {
         type: String,
-        require: true,
+        required: true,
         unique: true,
         match: [/.+@.+\..+/, 'Must match an email address!'],
     },
@@ -21,7 +22,9 @@ const userSchema = new Schema({
         required: true,
         minlength: 5,
     },
-    income: [incomeSchema],
+    income: {
+        type: Number,
+    },
     expenses: [expenseSchema],
     savingsgoal: {
         type: Number,

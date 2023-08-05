@@ -32,16 +32,17 @@ const resolvers = {
 
 
         // },
-        me: async (parent, args, context) => {
-            if (context.user) {
-                return users.findOne({ _id: context.user._id }).populate('expenses').populate('income');
+        me: async (parent, args, username) => {
+            if (username) {
+                const user = await users.findOne({ username });
+                return user
             }
-            throw new AuthenticationError('You need to be logged in!');
+            // throw new AuthenticationError('You need to be logged in!');
         },
     },
     Mutation: {
-        addUser: async (parent, { username, email, password }) => {
-            const user = await users.create({ username, email, password });
+        addUser: async (parent, { username, email, password, income, savingsgoal }) => {
+            const user = await users.create({ username, email, password, income, savingsgoal });
             const token = signToken(user);
             return { token, user };
         },
@@ -61,16 +62,16 @@ const resolvers = {
             const token = signToken(user);
             return { token, user };
         },
-        addExpense: async (parent, { expense, amount }, context) => {
-            if (context.user) {
+        addExpense: async (parent, { name, amount, username }, context) => {
+            if (true) {
                 const expense = await expenses.create({
-                    expense,
+                    name,
                     amount,
-                    username: context.user.username,
+                    username
                 });
 
                 await users.findOneAndUpdate(
-                    { _id: context.user._id },
+                    { username: username },
                     { $addToSet: { expenses: expense._id } }
                 );
 
