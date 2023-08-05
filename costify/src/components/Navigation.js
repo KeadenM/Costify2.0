@@ -25,7 +25,7 @@ function Navigation({ handlePageChange }) {
             </Nav.Link>
             <Nav.Link
               href="#link"
-              conClick={console.log("expense page needed")}
+              onClick={console.log("expense page needed")}
             >
               Add expense
             </Nav.Link>
