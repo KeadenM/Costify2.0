@@ -32,12 +32,8 @@ const resolvers = {
 
 
         // },
-        me: async (parent, args, username) => {
-            if (username) {
-                const user = await users.findOne({ username });
-                return user
-            }
-            // throw new AuthenticationError('You need to be logged in!');
+        me: async (parent, { username }) => {
+            return users.findOne({ username });
         },
     },
     Mutation: {
@@ -70,9 +66,11 @@ const resolvers = {
                     username
                 });
 
+                const newExpense = await Expense.findOne({ name });
+
                 const user = await users.findOneAndUpdate(
                     { username: username },
-                    { $addToSet: { expenses: expense._id } }
+                    { $addToSet: { expenses: newExpense } }
                 );
 
                 return user;

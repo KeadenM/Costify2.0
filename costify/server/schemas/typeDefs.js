@@ -12,7 +12,7 @@ const typeDefs = gql`
     }
     
     type Expense {
-        _id: ID
+        _id: ID!
         name: String
         amount: Float
     }
