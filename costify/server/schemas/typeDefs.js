@@ -13,7 +13,7 @@ const typeDefs = gql`
     
     type Expense {
         _id: ID
-        expense: String
+        name: String
         amount: Float
     }
     type Auth {
@@ -27,9 +27,9 @@ const typeDefs = gql`
         addUser(username: String!, email: String!, password: String!, income: Int, savingsgoal: Int): Auth
         login(email: String!, password: String!): Auth
         addIncome(income: String!, amount: Float!, username: String!): User
-        addExpense(expense: String!, amount: Float!, username: String!): User
+        addExpense(name: String!, amount: Float!, username: String!): User
         addSavingsGoal(savingsgoal: Float!): User
-        removeExpense(expense: String!, amount: Float!): User
+        removeExpense(name: String!, amount: Float!): User
         removeIncome(income: String!, amount: Float!): User
         removeSavingsGoal(savingsgoal: Float!): User
     }
