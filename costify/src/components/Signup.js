@@ -10,9 +10,9 @@ import { useState } from 'react';
 
 function Signup() {
   const [email, setEmail] = useState('');
-  const [userName, setUserName] = useState('');
+  const [username, setUserName] = useState('');
   const [income, setIncome] = useState('');
-  const [savings, setSavings] = useState('');
+  const [savingsgoal, setSavingsGoal] = useState('');
   const [password, setPassword] = useState('');
   const [userFormData, setUserFormData] = useState({email: '', userName: '', income: '', savings: '', password: ''})
   const [addUser, {error, data}] = useMutation(ADD_USER)
@@ -29,9 +29,9 @@ function Signup() {
     } else if (inputType === 'userName') {
       setUserName(inputValue);
     }else if (inputType === 'income') {
-      setIncome(inputValue);
+      setIncome(parseInt(inputValue));
     }else if (inputType === 'savings') {
-      setSavings(inputValue);
+      setSavingsGoal(parseInt(inputValue));
     } else {
       setPassword(inputValue);
     }
@@ -44,9 +44,9 @@ function Signup() {
     e.preventDefault();
 
     try {
-      setUserFormData({email: email, userName: userName, income: income, savings: savings, password: password})
+      // setUserFormData({email, userName, income, savings, password})
       const {data} = await addUser({
-        variables: {...userFormData}
+        variables: { username, email, password, savingsgoal, income  }
       })
     }
 
@@ -54,12 +54,7 @@ function Signup() {
       console.log(err)
     }
     
-    alert(`Hello ${userName}`);
-
-    // If everything goes according to plan, we want to clear out the input after a successful registration.
-    setUserName('');
-    setPassword('');
-    setEmail('');
+    alert(`Hello ${username}`);
   };
 
   return (
@@ -84,7 +79,7 @@ function Signup() {
       <Form.Group className="mb-3" controlId="formPlaintext">
         <Form.Label>User Name</Form.Label>
         <Form.Control 
-        value={userName}
+        value={username}
         name='userName'
         onChange={handleInputChange}
         type="text" 
@@ -109,7 +104,7 @@ function Signup() {
         <Form.Label>Savings goals</Form.Label>
         <Form.Control 
         type="digit"
-        value={savings}
+        value={savingsgoal}
         name="savings"
         onChange={handleInputChange}
         placeholder="Enter monthly savings goal" />
