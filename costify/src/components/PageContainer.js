@@ -3,6 +3,7 @@ import Navigation from './Navigation';
 import ContainerExample from './Main';
 import Signup from './Signup';
 import Login from './login';
+import MultipleAddonsExample from './Addexpense';
 
 export default function PageContainer() {
     const [currentPage, setCurrentPage] = useState('Main');
@@ -22,6 +23,10 @@ export default function PageContainer() {
             return (
                 <Login />
             )
+        if (currentPage === 'Expense') {
+            return (
+                <MultipleAddonsExample />
+            );
         }
     };
 

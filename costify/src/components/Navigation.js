@@ -37,7 +37,7 @@ function Navigation({ handlePageChange }) {
             </Nav.Link>
             <Nav.Link
               href="#link"
-              onClick={console.log("expense page needed")}
+              onClick={() => handlePageChange('Expense')}
             >
               Add expense
             </Nav.Link>
