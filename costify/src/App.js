@@ -30,7 +30,7 @@ import {
 
 const App = () => 
 <ApolloProvider client={client}>
-<PageContainer />;
+<PageContainer />
 </ApolloProvider>
 
 
