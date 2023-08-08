@@ -1,6 +1,15 @@
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 
+function addExpense() {
+  const [expense, setExpense] = useState('');
+
+const handleFormSubmit = async (e) => {
+  // Preventing the default behavior of the form submit (which is to refresh the page)
+  e.preventDefault();
+}
+}
+
 function MultipleAddonsExample() {
   return (
     <>
