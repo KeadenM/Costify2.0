@@ -25,7 +25,7 @@ function Navigation({ handlePageChange }) {
             </Nav.Link>
             <Nav.Link
               href="#link"
-              conClick={() => handlePageChange('Expense')}
+              onClick={() => handlePageChange('Expense')}
             >
               Add expense
             </Nav.Link>
