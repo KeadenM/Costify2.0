@@ -91,16 +91,12 @@ const resolvers = {
 
             throw new AuthenticationError('You need to be logged in!');
         },
-        addSavingsGoal: async (parent, { savingsgoal }, context) => {
-            if (context.user) {
-                const savingsgoal = await savingsgoal.create({
-                    savingsgoal,
-                    username: context.user.username,
-                });
-
-                await users.findOneAndUpdate(
-                    { _id: context.user._id },
-                    { $addToSet: { savingsgoal: savingsgoal._id } }
+        addSavingsGoal: async (parent, { amount, username }, context) => {
+            if (true) {
+                const savingsgoal = await users.findOneAndUpdate(
+                    { username: username },
+                    { $set: { savingsgoal: amount }},
+                    { new: true }
                 );
 
                 return savingsgoal;
