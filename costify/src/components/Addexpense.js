@@ -1,12 +1,14 @@
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
+import { useState } from 'react';
+import { useMutation } from '@apollo/client';
+import { ADD_EXPENSE } from '../../src/utils/mutations';
 
-function addExpense() {
+function NewExpense() {
   const [expense, setExpense] = useState('');
   const [name, setName] = useState('');
+  const [addExpense, {error, data}] = useMutation(ADD_EXPENSE)
 
-  
-  
   const handleInputChange = (e) => {
     const { target } = e;
     const inputType = target.name;
@@ -25,9 +27,9 @@ function addExpense() {
   e.preventDefault();
   
     try {
-      setExpense({expense: expense, name: name})
+      // setExpense({expense: expense, name: name})
       const {data} = await addExpense({
-        variables: {...expenseFormData}
+        variables: { expense, name }
       })
     }
     catch (err) {
@@ -39,9 +41,7 @@ function addExpense() {
     setExpense('');
     setName('');
   };
-}
 
-function MultipleAddonsExample() {
   return (
     <>
       <InputGroup className="mb-3">
@@ -56,4 +56,4 @@ function MultipleAddonsExample() {
   );
 }
 
-export default MultipleAddonsExample;
+export default NewExpense;
