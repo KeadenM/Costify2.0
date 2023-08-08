@@ -104,20 +104,17 @@ const resolvers = {
 
             throw new AuthenticationError('You need to be logged in!');
         },
-        removeExpense: async (parent, { expense, amount }, context) => {
-            if (context.user) {
-                const expense = await Expense.findOneAndDelete({
-                    expense,
-                    amount,
-                    username: context.user.username,
-                });
+        removeExpense: async (parent, { name, username }, context) => {
+            if (true) {
+                const expense = await Expense.findOneAndDelete({ name });
 
-                await users.findOneAndUpdate(
-                    { _id: context.user._id },
-                    { $pull: { expenses: expense._id } }
+                const user = await users.findOneAndUpdate(
+                    { username: username },
+                    { $pull: { expenses: {name: name} } },
+                    { new: true }
                 );
 
-                return expense;
+                return user;
             }
 
             throw new AuthenticationError('You need to be logged in!');
