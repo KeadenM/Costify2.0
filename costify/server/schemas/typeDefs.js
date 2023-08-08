@@ -29,7 +29,7 @@ const typeDefs = gql`
         addIncome(amount: Int!, username: String!): User
         addExpense(name: String!, amount: Float!, username: String!): User
         addSavingsGoal(amount: Int!, username: String!): User
-        removeExpense(name: String!, amount: Float!): User
+        removeExpense(name: String!, username: String!): User
         removeIncome(income: String!, amount: Float!): User
         removeSavingsGoal(savingsgoal: Float!): User
     }

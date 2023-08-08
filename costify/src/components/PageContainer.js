@@ -23,6 +23,7 @@ export default function PageContainer() {
             return (
                 <Login />
             )
+        }
         if (currentPage === 'Expense') {
             return (
                 <MultipleAddonsExample />
