@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Navigation from './Navigation';
 import ContainerExample from './Main';
 import Signup from './Signup';
+import Expense from './Addexpense';
 
 export default function PageContainer() {
     const [currentPage, setCurrentPage] = useState('Main');
@@ -13,6 +14,11 @@ export default function PageContainer() {
             );
         }
         if (currentPage === 'Signup') {
+            return (
+                <Signup />
+            );
+        }
+        if (currentPage === 'Expense') {
             return (
                 <Signup />
             );
