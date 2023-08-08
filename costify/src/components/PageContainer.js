@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Navigation from './Navigation';
 import ContainerExample from './Main';
 import Signup from './Signup';
+import Login from './login';
 import MultipleAddonsExample from './Addexpense';
 
 export default function PageContainer() {
@@ -18,6 +19,10 @@ export default function PageContainer() {
                 <Signup />
             );
         }
+        if (currentPage === 'Login') {
+            return (
+                <Login />
+            )
         if (currentPage === 'Expense') {
             return (
                 <MultipleAddonsExample />

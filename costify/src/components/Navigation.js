@@ -2,6 +2,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import auth from '../utils/auth';
 
 function Navigation({ handlePageChange }) {
   return (
@@ -21,7 +22,18 @@ function Navigation({ handlePageChange }) {
               href="#signup"
               onClick={() => handlePageChange('Signup')}
             >
-              Login/Signup
+              Signup
+            </Nav.Link>
+            <Nav.Link
+              href="#signup"
+              onClick={() => handlePageChange('Login')}
+            >
+              Login
+            </Nav.Link>
+            <Nav.Link
+              onClick={() => auth.logout()}
+            >
+              Logout
             </Nav.Link>
             <Nav.Link
               href="#link"

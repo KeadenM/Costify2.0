@@ -4,8 +4,9 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useMutation } from '@apollo/client';
-import { ADD_USER } from '../../src/utils/mutations';
+import { ADD_USER, LOGIN_USER } from '../../src/utils/mutations';
 import { useState } from 'react';
+import auth from '../utils/auth';
 
 
 function Signup() {
@@ -14,8 +15,8 @@ function Signup() {
   const [income, setIncome] = useState('');
   const [savingsgoal, setSavingsGoal] = useState('');
   const [password, setPassword] = useState('');
-  const [userFormData, setUserFormData] = useState({email: '', userName: '', income: '', savings: '', password: ''})
-  const [addUser, {error, data}] = useMutation(ADD_USER)
+  const [addUser] = useMutation(ADD_USER);
+  
 
   const handleInputChange = (e) => {
     // Getting the value and name of the input which triggered the change
@@ -32,30 +33,36 @@ function Signup() {
       setIncome(parseInt(inputValue));
     }else if (inputType === 'savings') {
       setSavingsGoal(parseInt(inputValue));
-    } else {
+    } else if (inputType === 'password'){
       setPassword(inputValue);
     }
 
 
   };
 
-  const handleFormSubmit = async (e) => {
+  const handleSignupFormSubmit = async (e) => {
     // Preventing the default behavior of the form submit (which is to refresh the page)
     e.preventDefault();
 
     try {
       // setUserFormData({email, userName, income, savings, password})
-      const {data} = await addUser({
+      const mutationResponse = await addUser({
         variables: { username, email, password, savingsgoal, income  }
       })
+      const token = mutationResponse.data.addUser.token
+      auth.login(token)
+      console.log(token)
+      alert(`Hello ${username}`);
     }
 
     catch (err) {
       console.log(err)
     }
     
-    alert(`Hello ${username}`);
+    
   };
+
+  
 
   return (
     <Container style={{height: '100vh'}}>
@@ -126,31 +133,14 @@ function Signup() {
       <Button 
       variant="primary" 
       type="submit"
-      onClick={handleFormSubmit}
+      onClick={handleSignupFormSubmit}
       >
         Sign-up
       </Button>
     </Form>
       </Col>
 
-      <Col>
-    <Form>
-       <Form.Group className="mb-3" controlId="formEmail">
-       <Form.Label>Log in</Form.Label>
-        <Form.Control type="email" placeholder="Enter email" />
-      </Form.Group>
-
-      <Form.Group className="mb-3" controlId="formPassword">
-        <Form.Label>Password</Form.Label>
-        <Form.Control type="password" placeholder="Password" />
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicCheckbox">
-      </Form.Group>
-      <Button variant="primary" type="submit">
-       Log-in
-      </Button>
-    </Form>
-</Col>
+      
 
     </Row>
     </Container>
