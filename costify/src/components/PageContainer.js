@@ -6,7 +6,7 @@ import Login from './login';
 import MultipleAddonsExample from './Addexpense';
 
 export default function PageContainer() {
-    const [currentPage, setCurrentPage] = useState('Main');
+    const [currentPage, setCurrentPage] = useState('Login');
 
     const renderPage = () => {
         if (currentPage === 'Main') {
