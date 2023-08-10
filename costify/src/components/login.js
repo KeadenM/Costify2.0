@@ -32,18 +32,21 @@ function Login() {
     e.preventDefault();
 
     try {
+      console.log(typeof(email), typeof(password));
       const mutationResponse = await loginUser({
         variables: { email, password },
       });
-      const token = mutationResponse.data.loginUser.token;
+      console.log(mutationResponse);
+      const token = mutationResponse.data.login.token;
+      
       auth.login(token);
       console.log(token);
-      alert(`Hello ${email}`);
+      // alert(`Hello ${email}`);
     } catch (err) {
       console.log(err);
     }
 
-    alert(`Hello ${email}`);
+    // alert(`Hello ${email}`);
   };
 
   return (

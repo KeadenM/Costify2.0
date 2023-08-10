@@ -12,7 +12,7 @@ import auth from "../utils/auth";
 function NewExpense() {
   const [name, setName] = useState("");
   const [amount, setAmount] = useState("");
-  const [username, setUsername] = useState('')
+  // const [username, setUsername] = useState("");
   const [addExpense, { error, data }] = useMutation(ADD_EXPENSE);
 
   const handleInputChange = (e) => {
@@ -31,20 +31,27 @@ function NewExpense() {
     // Preventing the default behavior of the form submit (which is to refresh the page)
     e.preventDefault();
 
+    const userFind = await auth.getProfile();
+    const username = userFind.data.username;
+    // setUsername(user);
+    
     try {
       // setExpense({expense: expense, name: name})
-      const userFind =  auth.getProfile();
-      setUsername(userFind.data.username)
-      console.log(userFind);
+      
+      
+      console.log(userFind.data.username);
+      console.log(username);
+      console.log(name, amount, username);
       const mutationResponse = await addExpense({
-        variables: { name, amount, username },
+        variables: { username, name, amount },
       });
       console.log(mutationResponse);
     } catch (err) {
       console.log(err);
     }
 
-    alert(`${name} amount is ${amount}`);
+    // alert(`${name} amount is ${amount}`);
+    console.log("Added expense");
 
     setName("");
     setAmount("");
