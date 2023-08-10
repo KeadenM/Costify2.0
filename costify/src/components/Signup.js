@@ -72,7 +72,7 @@ function Signup() {
       <Col>
     <Form>
       <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Sign up</Form.Label>
+        <Form.Label>Email</Form.Label>
         <Form.Control 
         value={email}
         name='email'
@@ -96,7 +96,7 @@ function Signup() {
       </Form.Group>
       
       <Form.Group className="mb-3" controlId="Income">
-        <Form.Label>Income</Form.Label>
+        <Form.Label>Enter your yearly income</Form.Label>
         <Form.Control 
         type="digit"
         value={income}
@@ -108,7 +108,7 @@ function Signup() {
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="Savings">
-        <Form.Label>Savings goals</Form.Label>
+        <Form.Label>Enter your monthly savings goal</Form.Label>
         <Form.Control 
         type="digit"
         value={savingsgoal}
