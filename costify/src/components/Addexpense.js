@@ -12,7 +12,6 @@ import auth from "../utils/auth";
 function NewExpense() {
   const [name, setName] = useState("");
   const [amount, setAmount] = useState("");
-  // const [username, setUsername] = useState("");
   const [addExpense, { error, data }] = useMutation(ADD_EXPENSE);
 
   const handleInputChange = (e) => {
@@ -33,12 +32,8 @@ function NewExpense() {
 
     const userFind = await auth.getProfile();
     const username = userFind.data.username;
-    // setUsername(user);
     
     try {
-      // setExpense({expense: expense, name: name})
-      
-      
       console.log(userFind.data.username);
       console.log(username);
       console.log(name, amount, username);
@@ -50,11 +45,10 @@ function NewExpense() {
       console.log(err);
     }
 
-    // alert(`${name} amount is ${amount}`);
-    console.log("Added expense");
-
     setName("");
     setAmount("");
+    alert(`${name} amount is ${amount}`);
+    // window.location.reload();
   };
 
   return (
