@@ -6,21 +6,24 @@ import { REMOVE_EXPENSE } from '../utils/mutations';
 import auth from "../utils/auth";
 
 const ExpenseList = () => {
-  // const user = auth.getProfile();
-  // const username = user.data.username;
-  const { data } = useQuery(QUERY_ME);
-  // const [removeExpense, { err }] = useMutation(REMOVE_EXPENSE);
-  // const userData = data?.me || {};
+    const { loading, error, data } = useQuery(QUERY_ME);
+
+    if (loading) return 'Loading...';
+    if (error) return `Error! ${error.message}`;
+
+  const expenseArr = data.me.expenses;
+
+  let expenses = []
+    for(let d of expenseArr) {
+      let expense = <ListGroup.Item>
+        {`${d.name}: $${d.amount}`}
+      </ListGroup.Item>
+      expenses.push(expense);
+    }
 
   return (
     <ListGroup>
-      <ListGroup.Item
-      onClick={console.log(data)}
-      >test</ListGroup.Item>
-      <ListGroup.Item></ListGroup.Item>
-      <ListGroup.Item></ListGroup.Item>
-      <ListGroup.Item></ListGroup.Item>
-      <ListGroup.Item></ListGroup.Item>
+      {expenses}
     </ListGroup>
   );
 }
