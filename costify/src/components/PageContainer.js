@@ -6,7 +6,7 @@ import Login from './login';
 import MultipleAddonsExample from './Addexpense';
 
 export default function PageContainer() {
-    const [currentPage, setCurrentPage] = useState('Login');
+    const [currentPage, setCurrentPage] = useState('Main');
 
     const renderPage = () => {
         if (currentPage === 'Main') {
@@ -33,9 +33,14 @@ export default function PageContainer() {
 
     const handlePageChange = (page) => setCurrentPage(page);
 
+    const handleMainChange = () => {
+        setCurrentPage('Main');
+        window.location.reload();
+    }
+
     return(
         <div>
-            <Navigation handlePageChange={handlePageChange} />
+            <Navigation handlePageChange={handlePageChange} handleMainChange={handleMainChange} />
             {renderPage()}
         </div>
     );

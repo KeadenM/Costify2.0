@@ -4,7 +4,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import auth from '../utils/auth';
 
-function Navigation({ handlePageChange }) {
+function Navigation({ handlePageChange, handleMainChange }) {
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container fluid>
@@ -14,7 +14,7 @@ function Navigation({ handlePageChange }) {
           <Nav className="me-auto">
             <Nav.Link 
               href="#main"
-              onClick={() => handlePageChange('Main')}
+              onClick={() => handleMainChange()}
             >
               Dashboard
             </Nav.Link>
