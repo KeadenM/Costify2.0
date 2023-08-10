@@ -50,17 +50,15 @@ export const ADD_INCOME = gql`
 `;
 
 export const REMOVE_EXPENSE = gql`
-  mutation removeExpense($name: String!, $username: String!) {
-    removeExpense(name: $name, username: $username) {
-      user {
-        _id
-        username
-        expenses {
-          _id
-          name
-          amount
-        }
-      }
+mutation Mutation($name: String!, $username: String!) {
+  removeExpense(name: $name, username: $username) {
+    _id
+    username
+    expenses {
+      _id
+      name
+      amount
     }
   }
+}
 `;
