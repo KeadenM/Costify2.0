@@ -1,0 +1,16 @@
+{
+    "name": "costify2.0",
+    "version": "0.1.0",
+    "main": "costify2.0/costify/server/server.js",
+    "scripts": {
+      "start": "node costify/server/server.js",
+      "test": "react-scripts test"
+    },
+    "devDependencies": {
+      "concurrently": "^8.2.0"
+    },
+    
+    "engines": {
+      "node": "16.18.0"
+    }
+  }
