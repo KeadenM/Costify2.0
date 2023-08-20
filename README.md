@@ -13,3 +13,7 @@ To use this application, you will begin by creating a login through filling out 
 ![image of application](assets/image.png)
 ## Credits
 For this project, we utlized code from in class activities from The University of Utah Coding Bootcamp. Additionally, we received assistance on our project from The University of Utah Coding Bootcamp tutors Benjamin Bushman and Kai.
+
+## Misc
+[Heroku GitHub](https://github.com/Emill0004/Costify2.5)
+[Deployed Application](https://warm-river-76374-530a5c9b64cc.herokuapp.com/)
